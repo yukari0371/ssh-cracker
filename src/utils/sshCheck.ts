@@ -6,7 +6,7 @@ const ssh = new NodeSSH();
 import { sshCheckResult } from "../types/sshDicAttacker";
 
 export async function sshCheck(
-    hostname: string,
+    host: string,
     timeout: number
 ): Promise<sshCheckResult> {
     return new Promise(async (resolve) => {
@@ -22,7 +22,7 @@ export async function sshCheck(
                 });
                 return resolve({
                     status: "success",
-                    hostname: hostname,
+                    host: hostname,
                     username: username,
                     password: password
                 });
