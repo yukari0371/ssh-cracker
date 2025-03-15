@@ -9,6 +9,9 @@ import { menu } from "./utils/menu";
 import { sshCheck } from "./utils/sshCheck";
 
 (async() => {
+    if (!fs.existsSync("data/dictionary.txt"))
+        throw new CrackerError("data/dictionary.txt does not exist.");
+
     if (!fs.existsSync("data/targets.txt"))
         throw new CrackerError("data/targets.txt does not exists.");
 
@@ -35,10 +38,11 @@ import { sshCheck } from "./utils/sshCheck";
             break;
 
             case "1":
-                const results = await Promise.all(targets.map(target => sshCheck(target, timeout)));
-                for (const result of results) {
+                for (const target of targets) {
+                    const result = await sshCheck(target, menuTImeout);
                     if (result.status === "error") {
-                        return;
+                        logger.error(result.message);
+                        continue;
                     } else if (result.status === "success") {
                         logger.success(`ConnectionSuccessful: ${result.hostname} | username: ${result.username} | password: ${result.password}`);
                         fs.appendFileSync("data/valid.txt", `${result.hostname}|${result.username}|${result.password}`);
