@@ -42,7 +42,6 @@ import { sshCheck } from "./utils/sshCheck";
                     const result = await sshCheck(target, menuTImeout);
                     if (result.status === "error") {
                         logger.error(result.message);
-                        continue;
                     } else if (result.status === "success") {
                         logger.success(`ConnectionSuccessful: ${result.hostname} | username: ${result.username} | password: ${result.password}`);
                         fs.appendFileSync("data/valid.txt", `${result.hostname}|${result.username}|${result.password}`);
