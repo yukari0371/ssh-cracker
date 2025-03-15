@@ -26,7 +26,8 @@ import { sshCheck } from "./utils/sshCheck";
 
     while (true) {
         console.clear();
-        console.log(menu(timeout));
+        const menuTImeout = Number(fs.readFileSync("data/timeout.txt", "utf-8"));
+        console.log(menu(menuTImeout));
         const select = await prompt("select");
 
         switch (select) {
