@@ -1,7 +1,7 @@
 export type sshCheckResult =
 | {
     status: "success";
-    hostname: string;
+    host: string;
     username: string;
     password: string;
 } | {
