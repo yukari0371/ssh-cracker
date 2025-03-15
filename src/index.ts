@@ -1,7 +1,7 @@
 import fs from "fs";
 
 /** Functions */
-import { AttackerError } from "./error";
+import { CrackerError } from "./error";
 import { prompt } from "./utils/prompt";
 import { logger } from "./utils/logger";
 import { sleep } from "./utils/sleep";
@@ -10,19 +10,19 @@ import { sshCheck } from "./utils/sshCheck";
 
 (async() => {
     if (!fs.existsSync("data/targets.txt"))
-        throw new AttackerError("data/targets.txt does not exists.");
+        throw new CrackerError("data/targets.txt does not exists.");
 
     if (!fs.existsSync("data/valid.txt"))
-        throw new AttackerError("data/valid.txt does not exists.");
+        throw new CrackerError("data/valid.txt does not exists.");
 
     if (!fs.existsSync("data/timeout.txt"))
-        throw new AttackerError("data/timeout.txt does not exists.");
+        throw new CrackerError("data/timeout.txt does not exists.");
 
     const targets = fs.readFileSync("data/targets.txt", "utf-8").split("\n").filter(line => line !== "");
     const timeout = Number(fs.readFileSync("data/timeout.txt", "utf-8"));
 
     if (timeout < 0)
-        throw new AttackerError("The timeout value must be greater than 0.");
+        throw new CrackerError("The timeout value must be greater than 0.");
 
     while (true) {
         console.clear();
