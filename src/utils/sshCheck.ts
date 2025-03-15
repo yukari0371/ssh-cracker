@@ -15,7 +15,7 @@ export async function sshCheck(
             const [ username, password ] = key.split("|");
             try {
                 await ssh.connect({
-                    hostname: hostname,
+                    host: hostname,
                     username: username,
                     password: password,
                     timeout: timeout
