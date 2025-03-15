@@ -3,7 +3,7 @@ import { NodeSSH } from "node-ssh";
 const ssh = new NodeSSH();
 
 /** Types */
-import { sshCheckResult } from "../types/sshDicAttacker";
+import { sshCheckResult } from "../types/sshCracker";
 
 export async function sshCheck(
     hostname: string,
