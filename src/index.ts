@@ -43,8 +43,8 @@ import { sshCheck } from "./utils/sshCheck";
                     if (result.status === "error") {
                         logger.error(result.message);
                     } else if (result.status === "success") {
-                        logger.success(`ConnectionSuccessful: ${result.hostname} | username: ${result.username} | password: ${result.password}`);
-                        fs.appendFileSync("data/valid.txt", `${result.hostname}|${result.username}|${result.password}`);
+                        logger.success(`ConnectionSuccessful: ${result.host} | username: ${result.username} | password: ${result.password}`);
+                        fs.appendFileSync("data/valid.txt", `${result.host}|${result.username}|${result.password}`);
                     }
                 }
             break;
