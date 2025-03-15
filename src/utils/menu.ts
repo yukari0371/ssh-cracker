@@ -1,8 +1,5 @@
 import fs from "fs";
 
-/** FUnctions */
-import { AttackerError } from "../error";
-
 export function menu(timeout: number) {
     return `
 ╔═╗╔═╗╦ ╦  ╔╦╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗╦═╗╦ ╦  ╔═╗╔╦╗╔╦╗╔═╗╔═╗╦╔═╔═╗╦═╗
