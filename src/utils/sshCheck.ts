@@ -22,12 +22,14 @@ export async function sshCheck(
                 });
                 return resolve({
                     status: "success",
-                    host: hostname,
+                    host: host,
                     username: username,
                     password: password
                 });
             } catch (_) {
                 continue;
+            } finally {
+                ssh.dispose();
             }
         }
         resolve({
