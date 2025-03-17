@@ -21,10 +21,10 @@ import { sshCheck } from "./utils/sshCheck";
     if (!fs.existsSync("data/timeout.txt"))
         throw new CrackerError("data/timeout.txt does not exists.");
 
-    const targets = fs.readFileSync("data/targets.txt", "utf-8").split("\n").filter(line => line !== "");
+    const targets = fs.readFileSync("data/targets.txt", "utf-8").split("\n").map(line => line.trim()).filter(line => line !== "");
     const timeout = Number(fs.readFileSync("data/timeout.txt", "utf-8"));
 
-    if (timeout < 0)
+    if (!(timeout > 0))
         throw new CrackerError("The timeout value must be greater than 0.");
 
     while (true) {
@@ -41,7 +41,7 @@ import { sshCheck } from "./utils/sshCheck";
                 for (const target of targets) {
                     const result = await sshCheck(target, menuTImeout);
                     if (result.status === "error") {
-                        logger.error(result.message);
+                        logger.error(`ConnectionFailure: ${target}`);
                     } else if (result.status === "success") {
                         logger.success(`ConnectionSuccessful: ${result.host} | username: ${result.username} | password: ${result.password}`);
                         fs.appendFileSync("data/valid.txt", `${result.host}|${result.username}|${result.password}`);
